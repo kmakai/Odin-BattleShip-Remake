@@ -1,4 +1,4 @@
-export default class Ship {
+class Ship {
   constructor(length) {
     this.length = length;
   }
@@ -8,7 +8,12 @@ export default class Ship {
   }
 
   isSunk() {
-    if (!this.length) true;
-    else false;
+    if (this.length > 0) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
+
+module.exports = Ship;
