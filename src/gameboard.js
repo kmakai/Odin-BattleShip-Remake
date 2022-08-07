@@ -1,4 +1,4 @@
-const Ship = require('./ship.js');
+const Ship = require("./ship.js");
 
 class Gameboard {
   constructor() {
@@ -6,43 +6,41 @@ class Gameboard {
     this.activeShips = 0;
     this.missed = [];
     this.board = [
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
     ];
-
-    this.placeShip(new Ship(3), [0, 1], 'h');
-    this.placeShip(new Ship(2), [2, 3], 'v');
   }
 
   receiveAttack(cords) {
     const [x, y] = cords;
-    if (this.board[x][y] !== '') {
+    if (this.board[x][y] !== "") {
       this.board[x][y].hit();
+      this.board[x][y] = "hit";
+      this.calcShips();
     } else {
       this.missed.push(cords);
     }
-    this._availableShip();
   }
 
   placeShip(ship, cords, direction) {
     let [x, y] = cords;
     switch (direction) {
-      case 'h':
-        for (let i = 0; i < ship['length']; i++) {
+      case "h":
+        for (let i = 0; i < ship["len"]; i++) {
           this.board[x][y] = ship;
           y++;
         }
         break;
-      case 'v':
-        for (let i = 0; i < ship['length']; i++) {
+      case "v":
+        for (let i = 0; i < ship["len"]; i++) {
           this.board[x][y] = ship;
           x++;
         }
@@ -50,10 +48,10 @@ class Gameboard {
     this.ships.push(ship);
   }
 
-  availableShip() {
-    let sum = 0;
-    this.ships.forEach((ship) => (ship.isSunk ? (sum += 1) : sum));
-    this.activeShips = sum;
+  calcShips() {
+    this.activeShips = this.ships.reduce((sum, ship) => {
+      return sum + (ship.isSunk() ? 0 : 1);
+    }, 0);
   }
 }
 
