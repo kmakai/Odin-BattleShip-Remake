@@ -4,7 +4,7 @@ class Ship {
   }
 
   hit() {
-    this.length--;
+    this.length -= 1;
   }
 
   isSunk() {
