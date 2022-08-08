@@ -1,3 +1,5 @@
+const { mode } = require('../webpack.config');
+
 class Player {
   constructor(name) {
     this.name = name;
@@ -16,8 +18,10 @@ class Ai extends Player {
       Math.floor(Math.random() * 10),
     ];
 
-    if(board[x][y] === "miss" || board[x[y]] === "hit") this.takeShot();
+    if (board[x][y] === 'miss' || board[x[y]] === 'hit') this.takeShot();
 
     board.receiveAttack([x, y]);
   }
 }
+
+module.exports = { Player, Ai };
