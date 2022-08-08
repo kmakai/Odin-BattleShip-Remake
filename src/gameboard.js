@@ -1,29 +1,29 @@
-const Ship = require("./ship.js");
+const Ship = require('./ship.js');
 
 class Gameboard {
   constructor() {
     this.ships = [];
-    this.activeShips = 0;
+    this.activeShips = this.calcShips;
     this.missed = [];
     this.board = [
-      ["", "", "", "", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", "", "", "", ""],
+      ['', '', '', '', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '', '', '', ''],
     ];
   }
 
   receiveAttack(cords) {
     const [x, y] = cords;
-    if (this.board[x][y] !== "") {
+    if (this.board[x][y] !== '') {
       this.board[x][y].hit();
-      this.board[x][y] = "hit";
+      this.board[x][y] = 'hit';
       this.calcShips();
     } else {
       this.missed.push(cords);
@@ -33,14 +33,14 @@ class Gameboard {
   placeShip(ship, cords, direction) {
     let [x, y] = cords;
     switch (direction) {
-      case "h":
-        for (let i = 0; i < ship["len"]; i++) {
+      case 'h':
+        for (let i = 0; i < ship['len']; i++) {
           this.board[x][y] = ship;
           y++;
         }
         break;
-      case "v":
-        for (let i = 0; i < ship["len"]; i++) {
+      case 'v':
+        for (let i = 0; i < ship['len']; i++) {
           this.board[x][y] = ship;
           x++;
         }
