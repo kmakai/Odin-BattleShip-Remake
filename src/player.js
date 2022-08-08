@@ -1,5 +1,3 @@
-const { mode } = require('../webpack.config');
-
 class Player {
   constructor(name) {
     this.name = name;

@@ -1,19 +1,19 @@
-const GameBoard = require("./gameboard");
-const Ship = require("./ship");
+const GameBoard = require('./gameboard');
+const Ship = require('./ship');
+const { Player, Ai } = require('./player');
 
-const b = new GameBoard();
+// Get Dom elements.
+const PlayerOneName = document.querySelector('.player1 .name');
+const PlayerOneMsg = document.querySelector('.player1 .msg');
+const PlayerOneBoard = document.querySelector('.player1 .board');
 
-b.placeShip(new Ship(3), [0, 1], "h");
-b.placeShip(new Ship(2), [2, 3], "v");
+const PlayerTwoName = document.querySelector('.player2 .name');
+const PlayerTwoMsg = document.querySelector('.player2 .msg');
+const PlayerTwoBoard = document.querySelector('.player2 .board');
 
-b.receiveAttack([2, 3]);
-console.log(b);
+// Create Player and Ai.
+const playerOne = new Player('Player');
+const playerTwo = new Ai('Bot');
 
-b.receiveAttack([5, 3]);
-b.receiveAttack([5, 4]);
-b.receiveAttack([5, 5]);
-b.receiveAttack([5, 6]);
-b.receiveAttack([5, 7]);
-
-b.receiveAttack([3, 3]);
-console.log(b);
+// Create Boards.
+playerOne.board = new GameBoard()
