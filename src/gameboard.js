@@ -18,12 +18,13 @@ class Gameboard {
     ];
   }
 
-  receiveAttack(cords) {
-    const [x, y] = cords;
-    if (this.board[x][y] === typeof Ship || this.board[x][y] !== '') {
-      this.board[x][y] = 'hit';
+  receiveAttack(coords) {
+    const [x, y] = coords;
+    const spot = this.board[x][y];
+    if (spot === typeof Ship) {
+      spot = 'hit';
       this.calcShips();
-    } else {
+    } else if (spot === 'hit' || spot === 'miss') {
       this.missed.push(cords);
       this.board[x][y] = 'miss';
     }
