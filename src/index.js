@@ -42,8 +42,7 @@ const displayBoard = function () {
   let board = playerOne.board.board;
   board.forEach((row, rI) => {
     row.forEach((cell, cI) => {
-      console.log(typeof cell)
-      const html = `  <div class="cell" data-x="${rI}" data-y="${cI}">${cell === typeof object ? "ship" : cell}</div>
+      const html = `  <div class="cell" data-x="${rI}" data-y="${cI}">${typeof cell === 'object' ? "ship" : cell}</div>
       `;
 
       PlayerOneBoard.insertAdjacentHTML("beforeend", html);
