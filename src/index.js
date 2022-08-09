@@ -36,13 +36,18 @@ playerTwo.board.placeShip(new Ship(3), [0, 9], 'v');
 playerTwo.board.placeShip(new Ship(3), [5, 5], 'h');
 playerTwo.board.placeShip(new Ship(2), [8, 5], 'v');
 console.log(playerTwo.board);
+playerOne.board.receiveAttack([5,1]);
 
+const displayBoard = function () {
+  let board = playerOne.board.board;
+  board.forEach((row, rI) => {
+    row.forEach((cell, cI) => {
+      const html = `  <div class="cell" data-x="${rI}" data-y="${cI}">${cell === typeof Object ? "ship" : cell}</div>
+      `;
 
-const displayBoard = function(player){
-  player.board.forEach((row, rI)=>{
-    row.forEach((cell, cI)=> {
-      const html = `  <div class="cell" data-x="${rI}" data-y="${cI}"></div>
-      `
-    })
-  })
-}
+      PlayerOneBoard.insertAdjacentHTML("beforeend", html);
+    });
+  });
+};
+
+displayBoard();

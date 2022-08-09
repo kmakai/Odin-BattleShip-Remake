@@ -27,6 +27,7 @@ class Gameboard {
       this.calcShips();
     } else {
       this.missed.push(cords);
+      this.board[x][y] = 'miss';
     }
   }
 
