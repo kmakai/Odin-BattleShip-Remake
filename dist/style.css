@@ -1,0 +1,14 @@
+body {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid green;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.main div {
+  border: 1px solid lightgrey;
+}

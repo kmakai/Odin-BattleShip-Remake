@@ -36,3 +36,8 @@ playerTwo.board.placeShip(new Ship(3), [0, 9], 'v');
 playerTwo.board.placeShip(new Ship(3), [5, 5], 'h');
 playerTwo.board.placeShip(new Ship(2), [8, 5], 'v');
 console.log(playerTwo.board);
+
+
+const displayBoard = function(board){
+  
+}
