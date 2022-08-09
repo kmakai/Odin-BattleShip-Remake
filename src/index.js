@@ -78,17 +78,6 @@ const updateBoard = function () {
 };
 
 displayBoards();
-// currentPlayer = playerOne;
-// PlayerOneBoard.addEventListener("click", (e) => {
-//   if (currentPlayer === playerOne) return;
-//   const [x, y] = [e.target.dataset.x, e.target.dataset.y];
-//   const board = playerOne.board;
-//   board.receiveAttack([x, y]);
-//   PlayerOneBoard.innerHTML = "";
-//   PlayerTwoBoard.innerHTML = "";
-//   displayBoards();
-//   console.log(playerOne.board);
-// });
 
 // PLayer moves.
 PlayerTwoBoard.addEventListener('click', (e) => {
@@ -97,9 +86,8 @@ PlayerTwoBoard.addEventListener('click', (e) => {
   const board = playerTwo.board;
   board.receiveAttack([x, y]);
   updateBoard();
-  console.log(playerTwo.board);
   currentPlayer = playerTwo;
-  setTimeout(() => botMove(), 5000);
+  setTimeout(() => botMove(), 1000);
 });
 
 // Ai Shot/
@@ -108,6 +96,5 @@ const botMove = function () {
   const [x, y] = playerTwo.takeShot();
   board.receiveAttack([x, y]);
   updateBoard();
-  console.log(playerOne.board);
   currentPlayer = playerOne;
 };
