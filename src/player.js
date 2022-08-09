@@ -11,14 +11,18 @@ class Ai extends Player {
   }
 
   takeShot(board) {
+    console.log(board);
     let [x, y] = [
       Math.floor(Math.random() * 10),
       Math.floor(Math.random() * 10),
     ];
+    // console.log(x, y);
 
-    if (board[x][y] === 'miss' || board[x[y]] === 'hit') this.takeShot();
+    // if (board[x][y] === 'miss' || board[x][y] === 'hit') this.takeShot(board);
 
-    board.receiveAttack([x, y]);
+    // board.receiveAttack([x, y]);
+
+    return [x, y];
   }
 }
 

@@ -71,6 +71,12 @@ const displayBoards = function () {
   });
 };
 
+const updateBoard = function () {
+  PlayerOneBoard.innerHTML = '';
+  PlayerTwoBoard.innerHTML = '';
+  displayBoards();
+};
+
 displayBoards();
 // currentPlayer = playerOne;
 // PlayerOneBoard.addEventListener("click", (e) => {
@@ -84,13 +90,24 @@ displayBoards();
 //   console.log(playerOne.board);
 // });
 
+// PLayer moves.
 PlayerTwoBoard.addEventListener('click', (e) => {
   if (currentPlayer === playerTwo) return;
   const [x, y] = [e.target.dataset.x, e.target.dataset.y];
   const board = playerTwo.board;
   board.receiveAttack([x, y]);
-  PlayerOneBoard.innerHTML = '';
-  PlayerTwoBoard.innerHTML = '';
-  displayBoards();
+  updateBoard();
   console.log(playerTwo.board);
+  currentPlayer = playerTwo;
+  setTimeout(() => botMove(), 5000);
 });
+
+// Ai Shot/
+const botMove = function () {
+  const board = playerOne.board;
+  const [x, y] = playerTwo.takeShot();
+  board.receiveAttack([x, y]);
+  updateBoard();
+  console.log(playerOne.board);
+  currentPlayer = playerOne;
+};
