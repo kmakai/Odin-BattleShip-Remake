@@ -21,8 +21,8 @@ class Gameboard {
 
   receiveAttack(cords) {
     const [x, y] = cords;
-    if (this.board[x][y] !== '') {
-      this.board[x][y].hit();
+    if(this.board[x][y] === 'miss' || this.board[x][y] === 'hit') return;
+    if (this.board[x][y] === typeof Ship) {
       this.board[x][y] = 'hit';
       this.calcShips();
     } else {
