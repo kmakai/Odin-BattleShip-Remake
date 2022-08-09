@@ -20,14 +20,13 @@ class Gameboard {
 
   receiveAttack(coords) {
     const [x, y] = coords;
-    const spot = this.board[x][y];
-    if (spot === typeof Ship) {
-      spot = 'hit';
+    if (typeof this.board[x][y] === 'object') {
+      this.board[x][y].hit();
+      this.board[x][y] = 'hit';
       this.calcShips();
-    } else if (spot === 'hit' || spot === 'miss') {
-      this.missed.push(cords);
+    } else if (this.board[x][y] === '') {
       this.board[x][y] = 'miss';
-    }
+    } 
   }
 
   placeShip(ship, cords, direction) {

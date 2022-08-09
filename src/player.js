@@ -17,6 +17,9 @@ class Ai extends Player {
       Math.floor(Math.random() * 10),
     ];
     const coords = [x, y];
+    if(this.prevShots.includes(coords.join(''))) this.takeShot();
+
+    this.prevShots.push(coords.join(''))
 
     return coords;
   }
