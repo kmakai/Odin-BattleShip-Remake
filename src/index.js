@@ -45,7 +45,9 @@ const displayBoards = function () {
     row.forEach((cell, cI) => {
       let id = typeof cell === 'object' ? 'ship' : cell === 'hit' ? 'hit' : 'e';
       const content = cell === 'hit' || cell === 'miss' ? cell : '';
-      const html = `  <div class="cell" id="${id}" data-x="${rI}" data-y="${cI}">${typeof cell === 'object' ? "ship" : content}</div>
+      const html = `  <div class="cell" id="${id}" data-x="${rI}" data-y="${cI}">${
+        typeof cell === 'object' ? 'ship' : content
+      }</div>
       `;
 
       PlayerOneBoard.insertAdjacentHTML('beforeend', html);
@@ -75,12 +77,13 @@ displayBoards();
 // PLayer moves.
 PlayerTwoBoard.addEventListener('click', (e) => {
   if (currentPlayer === playerTwo) return;
+  if(e.target.textContent !== '') return;
   const [x, y] = [e.target.dataset.x, e.target.dataset.y];
   const board = playerTwo.board;
   board.receiveAttack([x, y]);
   updateBoard();
   currentPlayer = playerTwo;
-  setTimeout(() => botMove(), 800);
+  setTimeout(() => botMove(), 0);
   console.log(board);
 });
 
