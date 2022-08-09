@@ -4,7 +4,6 @@ class Gameboard {
   constructor() {
     this.ships = [];
     this.activeShips = this.calcShips;
-    this.missed = [];
     this.board = [
       ['', '', '', '', '', '', '', '', '', ''],
       ['', '', '', '', '', '', '', '', '', ''],

@@ -18,9 +18,6 @@ class Ai extends Player {
     ];
     const coords = [x, y];
 
-    if (this.prevShots.includes(coords.join(','))) this.takeShot();
-    this.prevShots.push(coords.join(','));
-
     return coords;
   }
 }
