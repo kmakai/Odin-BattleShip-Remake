@@ -37,7 +37,6 @@ playerTwo.board.placeShip(new Ship(4), [2, 0], 'v');
 playerTwo.board.placeShip(new Ship(3), [0, 9], 'v');
 playerTwo.board.placeShip(new Ship(3), [7, 4], 'h');
 playerTwo.board.placeShip(new Ship(2), [7, 2], 'v');
-// console.log(playerTwo.board);
 
 // Display the boards
 const displayBoards = function () {
@@ -45,9 +44,8 @@ const displayBoards = function () {
   board.forEach((row, rI) => {
     row.forEach((cell, cI) => {
       let id = typeof cell === 'object' ? 'ship' : cell === 'hit' ? 'hit' : 'e';
-      const html = `  <div class="cell" id="${id}" data-x="${rI}" data-y="${cI}">${
-        typeof cell === 'object' ? 'ship' : cell
-      }</div>
+      const content = cell === 'hit' || cell === 'miss' ? cell : '';
+      const html = `  <div class="cell" id="${id}" data-x="${rI}" data-y="${cI}">${typeof cell === 'object' ? "ship" : content}</div>
       `;
 
       PlayerOneBoard.insertAdjacentHTML('beforeend', html);
@@ -57,12 +55,7 @@ const displayBoards = function () {
   board = playerTwo.board.board;
   board.forEach((row, rI) => {
     row.forEach((cell, cI) => {
-      const content =
-        typeof cell === 'object' || cell === ''
-          ? ''
-          : cell === 'hit'
-          ? 'hit'
-          : 'miss';
+      const content = cell === 'hit' || cell === 'miss' ? cell : '';
       const html = `  <div class="cell" data-x="${rI}" data-y="${cI}">${content}</div>
       `;
 
@@ -87,7 +80,8 @@ PlayerTwoBoard.addEventListener('click', (e) => {
   board.receiveAttack([x, y]);
   updateBoard();
   currentPlayer = playerTwo;
-  setTimeout(() => botMove(), 1000);
+  setTimeout(() => botMove(), 800);
+  console.log(board);
 });
 
 // Ai Shot/
@@ -97,4 +91,5 @@ const botMove = function () {
   board.receiveAttack([x, y]);
   updateBoard();
   currentPlayer = playerOne;
+  console.log(board);
 };

@@ -8,6 +8,7 @@ class Player {
 class Ai extends Player {
   constructor(name) {
     super(name);
+    this.prevShots = [];
   }
 
   takeShot() {
@@ -15,8 +16,12 @@ class Ai extends Player {
       Math.floor(Math.random() * 10),
       Math.floor(Math.random() * 10),
     ];
+    const coords = [x, y];
 
-    return [x, y];
+    if (this.prevShots.includes(cords.join(','))) this.takeShot();
+    this.prevShots.push(cords.join(','));
+
+    return coords;
   }
 }
 
