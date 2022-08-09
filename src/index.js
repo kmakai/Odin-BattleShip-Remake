@@ -38,6 +38,11 @@ playerTwo.board.placeShip(new Ship(2), [8, 5], 'v');
 console.log(playerTwo.board);
 
 
-const displayBoard = function(board){
-  
+const displayBoard = function(player){
+  player.board.forEach((row, rI)=>{
+    row.forEach((cell, cI)=> {
+      const html = `  <div class="cell" data-x="${rI}" data-y="${cI}"></div>
+      `
+    })
+  })
 }
