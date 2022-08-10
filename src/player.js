@@ -21,8 +21,7 @@ class Ai extends Player {
     console.log(coords);
     console.log(this.prevShots.includes(coords.join('')));
     if (this.prevShots.includes(coords.join(''))) this.takeShot();
-
-    this.prevShots.push(coords.join(''));
+    else this.prevShots.push(coords.join(''));
 
     return coords;
   }
