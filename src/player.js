@@ -12,21 +12,15 @@ class Ai extends Player {
   }
 
   takeShot() {
-    let [x, y] = [
-      Math.floor(Math.random() * 10),
-      Math.floor(Math.random() * 10),
-    ];
-    const coords = [x, y];
-    console.log(this.prevShots);
-    console.log(coords);
-    console.log(this.prevShots.includes(coords.join('')));
-    if (this.prevShots.includes(coords.join(''))) {
-      this.takeShot();
-    } else {
-      this.prevShots.push(coords.join(''));
-
-      return coords;
+    const randomGen = () => Math.floor(Math.random() * 10);
+    let x = randomGen();
+    let y = randomGen();
+    while (this.prevShots.includes(`${x}${y}`)) {
+      x = randomGen();
+      y = randomGen();
     }
+
+    return [x,y]
   }
 }
 
