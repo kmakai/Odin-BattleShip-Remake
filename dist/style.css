@@ -38,8 +38,14 @@ body {
 
 #ship {
   background-color: dodgerblue;
+  border: 1px solid rgb(24, 122, 219);
 }
 
 #hit {
   background-color: rgba(30, 143, 255, 0.233);
+  border: 1px solid rgba(24, 122, 219, 0.651);
+}
+
+#miss {
+  border: 1px solid rgba(24, 124, 224, 0.671);
 }
