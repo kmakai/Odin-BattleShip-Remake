@@ -83,7 +83,7 @@ PlayerTwoBoard.addEventListener("click", (e) => {
   board.receiveAttack([x, y]);
   updateBoard();
   currentPlayer = playerTwo;
-  setTimeout(() => botMove(), 0);
+  setTimeout(() => botMove(), 500);
   console.log(board);
 });
 
