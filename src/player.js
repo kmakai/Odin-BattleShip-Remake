@@ -13,14 +13,8 @@ class Ai extends Player {
 
   takeShot() {
     const randomGen = () => Math.floor(Math.random() * 10);
-    let x = randomGen();
-    let y = randomGen();
-    while (this.prevShots.includes(`${x}${y}`)) {
-      x = randomGen();
-      y = randomGen();
-    }
 
-    return [x,y]
+    
   }
 }
 
