@@ -11,10 +11,16 @@ class Ai extends Player {
     this.prevShots = [];
   }
 
-  takeShot() {
-    const randomGen = () => Math.floor(Math.random() * 10);
+  takeShot(board) {
+    let [x, y] = [
+      Math.floor(Math.random() * 10),
+      Math.floor(Math.random() * 10),
+    ];
 
-    
+    if (board.board[x][y] === "miss" || board.board[x][y] === "hit")
+      this.takeShot();
+
+    board.receiveAttack([x, y]);
   }
 }
 
