@@ -20,10 +20,13 @@ class Ai extends Player {
     console.log(this.prevShots);
     console.log(coords);
     console.log(this.prevShots.includes(coords.join('')));
-    if (this.prevShots.includes(coords.join(''))) this.takeShot();
-    else this.prevShots.push(coords.join(''));
+    if (this.prevShots.includes(coords.join(''))) {
+      this.takeShot();
+    } else {
+      this.prevShots.push(coords.join(''));
 
-    return coords;
+      return coords;
+    }
   }
 }
 
