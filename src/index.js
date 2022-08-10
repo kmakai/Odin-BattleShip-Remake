@@ -90,7 +90,7 @@ PlayerTwoBoard.addEventListener("click", (e) => {
 // Ai Shot/
 const botMove = function () {
   const board = playerOne.board;
-  console.log(board);
+  // console.log(board);
   playerTwo.takeShot(board);
   updateBoard();
   currentPlayer = playerOne;

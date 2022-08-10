@@ -12,15 +12,18 @@ class Ai extends Player {
   }
 
   takeShot(board) {
-    let [x, y] = [
-      Math.floor(Math.random() * 10),
-      Math.floor(Math.random() * 10),
-    ];
+    let coords = this.genCoords();
 
-    if (board.board[x][y] === "miss" || board.board[x][y] === "hit")
-      this.takeShot();
+    while (this.prevShots.includes(coords.join(""))) {
+      coords = this.genCoords();
+    }
 
-    board.receiveAttack([x, y]);
+    this.prevShots.push(coords.join(""));
+    board.receiveAttack(coords);
+  }
+
+  genCoords() {
+    return [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
   }
 }
 
