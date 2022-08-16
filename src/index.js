@@ -25,8 +25,8 @@ PlayerTwoName.textContent = playerTwo.name;
 playerOne.board = new GameBoard();
 playerTwo.board = new GameBoard();
 
-// Create ships and place them.
 displayBoards();
+
 
 // Player 1 place shisps.
 const pships = [
@@ -196,8 +196,7 @@ function updateBoard() {
   displayBoards();
 }
 
-displayBoards();
-
+updateBoard();
 // check if game is over
 const IsOver = function () {
   if (playerOne.board.activeShips === 0 || playerTwo.board.activeShips === 0) {
@@ -221,7 +220,7 @@ PlayerTwoBoard.addEventListener('click', (e) => {
   board.receiveAttack([x, y]);
   updateBoard();
   currentPlayer = playerTwo;
-  setTimeout(() => botMove(), 500);
+  setTimeout(() => botMove(), 0);
   console.log(board);
 });
 
