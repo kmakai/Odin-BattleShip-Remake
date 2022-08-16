@@ -37,13 +37,19 @@ const pships = [
   new Ship(2),
 ];
 
+
+PlayerOneMsg.textContent = `Place your ships! 
+    press (space) to change orientation`
+
+
 function handlePlacement(ships, e) {
   if (ships === []) return;
   let index = 0;
   let ship;
   while (index < ships.length) {
     ship = ships[index];
-
+    PlayerOneMsg.textContent = `Place your ships! 
+    press (space) to change orientation`
     if (e.code === 'Space') {
       ship.orientation = ship.orientation === 'v' ? 'h' : 'v';
       updateBoard();
@@ -115,10 +121,8 @@ const randomPlace = function (ship) {
   function isClear(x, y) {
     if (orientation === 'v') {
       for (let i = 0; i < ship.len; i++) {
-        console.log(x, y, i);
 
         if (!board[x]) return false;
-        console.log(typeof board[x][y]);
         if (board[x][y] !== '') return false;
         if (typeof board[x][y] === 'object') return false;
         x++;
@@ -127,9 +131,7 @@ const randomPlace = function (ship) {
 
     if (orientation === 'h') {
       for (let i = 0; i < ship.len; i++) {
-        console.log(x, y, i);
         if (!board[x] && !board[x][y]) return false;
-        console.log(typeof board[x][y]);
         if (board[x][y] !== '') return false;
         if (typeof board[x][y] === 'object') return false;
 
@@ -139,7 +141,6 @@ const randomPlace = function (ship) {
     return true;
   }
 
-  console.log('final: ', isClear(x, y));
 
   while (!isClear(x, y)) {
     [x, y] = playerTwo.genCoords();
@@ -150,7 +151,6 @@ const randomPlace = function (ship) {
 };
 
 aships.forEach((ship, i) => {
-  console.log('index: ', i, 'length: ', ship.len);
   randomPlace(ship);
 });
 
@@ -217,17 +217,13 @@ PlayerTwoBoard.addEventListener('click', (e) => {
   if (e.target.textContent !== '') return;
   const [x, y] = [e.target.dataset.x, e.target.dataset.y];
   const board = playerTwo.board;
+  PlayerOneMsg.textContent = `Active Ships: ${board.ac}`
   board.receiveAttack([x, y]);
   updateBoard();
   currentPlayer = playerTwo;
   setTimeout(() => botMove(), 0);
   console.log(board);
 });
-
-// PlayerOneBoard.addEventListener("mouseover", function (e) {
-//   console.log(e.target.dataset.x, e.target.dataset.y);
-
-// });
 
 // Ai Shot/
 const botMove = function () {
