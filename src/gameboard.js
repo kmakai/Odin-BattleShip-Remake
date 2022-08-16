@@ -48,8 +48,9 @@ class Gameboard {
   }
 
   calcShips() {
+    let sum;
     this.activeShips = this.ships.reduce((sum, ship) => {
-      return sum + (ship.isSunk() ? 0 : 1);
+     return sum + (ship.isSunk() ? 0 : 1);
     }, 0);
   }
 }

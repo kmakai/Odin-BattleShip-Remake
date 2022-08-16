@@ -19,6 +19,11 @@ body {
   align-items: center;
 }
 
+.msg {
+  margin: 24px 0;
+  height: 10px;
+}
+
 .board {
   display: grid;
   grid-template-columns: repeat(10, 1fr);

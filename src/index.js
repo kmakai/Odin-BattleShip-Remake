@@ -217,7 +217,7 @@ PlayerTwoBoard.addEventListener('click', (e) => {
   if (e.target.textContent !== '') return;
   const [x, y] = [e.target.dataset.x, e.target.dataset.y];
   const board = playerTwo.board;
-  PlayerOneMsg.textContent = `Active Ships: ${board.ac}`
+  PlayerOneMsg.textContent = `Active Ships: ${board.activeShips}`
   board.receiveAttack([x, y]);
   updateBoard();
   currentPlayer = playerTwo;
