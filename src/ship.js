@@ -1,6 +1,7 @@
 class Ship {
   constructor(len) {
     this.len = len;
+    this.orientation = 'v';
   }
 
   hit() {
