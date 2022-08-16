@@ -217,7 +217,6 @@ PlayerTwoBoard.addEventListener('click', (e) => {
   if (e.target.textContent !== '') return;
   const [x, y] = [e.target.dataset.x, e.target.dataset.y];
   const board = playerTwo.board;
-  PlayerOneMsg.textContent = `Active Ships: ${board.activeShips}`
   board.receiveAttack([x, y]);
   updateBoard();
   currentPlayer = playerTwo;
@@ -229,6 +228,7 @@ PlayerTwoBoard.addEventListener('click', (e) => {
 const botMove = function () {
   if (IsOver()) return;
   const board = playerOne.board;
+  PlayerOneMsg.textContent = `Active Ships: ${board.activeShips}`
   // console.log(board);
   playerTwo.takeShot(board);
   updateBoard();
