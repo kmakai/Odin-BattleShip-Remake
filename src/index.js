@@ -228,7 +228,6 @@ PlayerTwoBoard.addEventListener('click', (e) => {
 const botMove = function () {
   if (IsOver()) return;
   const board = playerOne.board;
-  PlayerOneMsg.textContent = `Active Ships: ${board.activeShips}`
   // console.log(board);
   playerTwo.takeShot(board);
   updateBoard();
