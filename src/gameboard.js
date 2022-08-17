@@ -26,7 +26,7 @@ class Gameboard {
       this.calcShips();
     } else if (this.board[x][y] === '') {
       this.board[x][y] = 'miss';
-    } 
+    }
   }
 
   placeShip(ship, cords, direction) {
@@ -45,12 +45,13 @@ class Gameboard {
         }
     }
     this.ships.push(ship);
+    this.calcShips();
   }
 
   calcShips() {
     let sum;
     this.activeShips = this.ships.reduce((sum, ship) => {
-     return sum + (ship.isSunk() ? 0 : 1);
+      return sum + (ship.isSunk() ? 0 : 1);
     }, 0);
   }
 }

@@ -27,7 +27,6 @@ playerTwo.board = new GameBoard();
 
 displayBoards();
 
-
 // Player 1 place shisps.
 const pships = [
   new Ship(5),
@@ -37,10 +36,8 @@ const pships = [
   new Ship(2),
 ];
 
-
-PlayerOneMsg.textContent = `Place your ships! 
-    press (space) to change orientation`
-
+// PlayerOneMsg.textContent = `Place your ships!
+//     press (space) to change orientation`;
 
 function handlePlacement(ships, e) {
   if (ships === []) return;
@@ -49,7 +46,7 @@ function handlePlacement(ships, e) {
   while (index < ships.length) {
     ship = ships[index];
     PlayerOneMsg.textContent = `Place your ships! 
-    press (space) to change orientation`
+    press (space) to change orientation`;
     if (e.code === 'Space') {
       ship.orientation = ship.orientation === 'v' ? 'h' : 'v';
       updateBoard();
@@ -94,6 +91,7 @@ function handlePlacement(ships, e) {
       ships.shift();
       updateBoard();
     }
+
     break;
   }
 }
@@ -121,7 +119,6 @@ const randomPlace = function (ship) {
   function isClear(x, y) {
     if (orientation === 'v') {
       for (let i = 0; i < ship.len; i++) {
-
         if (!board[x]) return false;
         if (board[x][y] !== '') return false;
         if (typeof board[x][y] === 'object') return false;
@@ -140,7 +137,6 @@ const randomPlace = function (ship) {
     }
     return true;
   }
-
 
   while (!isClear(x, y)) {
     [x, y] = playerTwo.genCoords();
