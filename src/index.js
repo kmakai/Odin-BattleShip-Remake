@@ -6,10 +6,12 @@ const { Player, Ai } = require('./player');
 const PlayerOneName = document.querySelector('.player1 .name');
 const PlayerOneMsg = document.querySelector('.player1 .msg');
 const PlayerOneBoard = document.querySelector('.player1 .board');
+const PlayerOneships = document.querySelector('.player1 .ships');
 
 const PlayerTwoName = document.querySelector('.player2 .name');
 const PlayerTwoMsg = document.querySelector('.player2 .msg');
 const PlayerTwoBoard = document.querySelector('.player2 .board');
+const PlayerTwoships = document.querySelector('.player2 .ships');
 
 // Global Variables.
 let currentPlayer;
@@ -38,7 +40,8 @@ const pships = [
 
 // PlayerOneMsg.textContent = `Place your ships!
 //     press (space) to change orientation`;
-
+PlayerOneMsg.textContent = `Place your ships! 
+    press (space) to change orientation`;
 function handlePlacement(ships, e) {
   if (ships === []) return;
   let index = 0;
@@ -184,6 +187,11 @@ function displayBoards() {
       PlayerTwoBoard.insertAdjacentHTML('beforeend', html);
     });
   });
+
+  PlayerOneships.textContent = `Available Ships: ${
+    playerOne.board.activeShips >= 1 ? playerOne.board.activeShips : 0
+  }`;
+  PlayerTwoships.textContent = `Available Ships: ${playerTwo.board.activeShips}`;
 }
 
 function updateBoard() {
