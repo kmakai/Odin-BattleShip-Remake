@@ -48,6 +48,8 @@ function handlePlacement(ships, e) {
   let ship;
   while (index < ships.length) {
     ship = ships[index];
+
+    
     PlayerOneMsg.textContent = `Place your ships! 
     press (space) to change orientation`;
     if (e.code === 'Space') {
@@ -97,6 +99,7 @@ function handlePlacement(ships, e) {
 
     break;
   }
+  if(ships.length === 0) PlayerOneMsg.textContent = ``;
 }
 
 PlayerOneBoard.addEventListener('mouseover', handlePlacement.bind(e, pships));
