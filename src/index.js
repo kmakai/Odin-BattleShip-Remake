@@ -1,5 +1,6 @@
 const GameBoard = require('./gameboard');
-const Ship = require('./ship');
+// const Ship = require('./ship');
+import Ship from './ship.js';
 const { Player, Ai } = require('./player');
 
 // Get Dom elements.
@@ -49,7 +50,6 @@ function handlePlacement(ships, e) {
   while (index < ships.length) {
     ship = ships[index];
 
-    
     PlayerOneMsg.textContent = `Place your ships! 
     press (space) to change orientation`;
     if (e.code === 'Space') {
@@ -99,7 +99,7 @@ function handlePlacement(ships, e) {
 
     break;
   }
-  if(ships.length === 0) PlayerOneMsg.textContent = ``;
+  if (ships.length === 0) PlayerOneMsg.textContent = ``;
 }
 
 PlayerOneBoard.addEventListener('mouseover', handlePlacement.bind(e, pships));
