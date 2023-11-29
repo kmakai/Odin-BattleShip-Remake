@@ -1,27 +1,27 @@
-const GameBoard = require('./gameboard');
+const GameBoard = require("./gameboard");
 // const Ship = require('./ship');
-import Ship from './ship.js';
-const { Player, Ai } = require('./player');
+import Ship from "./ship.js";
+const { Player, Ai } = require("./player");
 
 // Get Dom elements.
-const PlayerOneName = document.querySelector('.player1 .name');
-const PlayerOneMsg = document.querySelector('.player1 .msg');
-const PlayerOneBoard = document.querySelector('.player1 .board');
-const PlayerOneships = document.querySelector('.player1 .ships');
+const PlayerOneName = document.querySelector(".player1 .name");
+const PlayerOneMsg = document.querySelector(".player1 .msg");
+const PlayerOneBoard = document.querySelector(".player1 .board");
+const PlayerOneships = document.querySelector(".player1 .ships");
 
-const PlayerTwoName = document.querySelector('.player2 .name');
-const PlayerTwoMsg = document.querySelector('.player2 .msg');
-const PlayerTwoBoard = document.querySelector('.player2 .board');
-const PlayerTwoships = document.querySelector('.player2 .ships');
+const PlayerTwoName = document.querySelector(".player2 .name");
+const PlayerTwoMsg = document.querySelector(".player2 .msg");
+const PlayerTwoBoard = document.querySelector(".player2 .board");
+const PlayerTwoships = document.querySelector(".player2 .ships");
 
 // Global Variables.
 let currentPlayer;
 
 // Create Player and Ai.
-const playerOne = new Player('Captain');
+const playerOne = new Player("Captain");
 PlayerOneName.textContent = playerOne.name;
 
-const playerTwo = new Ai('Bot');
+const playerTwo = new Ai("Bot");
 PlayerTwoName.textContent = playerTwo.name;
 
 // Create Boards.
@@ -44,7 +44,7 @@ const pships = [
 PlayerOneMsg.textContent = `Place your ships! 
     press (space) to change orientation`;
 function handlePlacement(ships, e) {
-  if (ships === []) return;
+  if (ships.length === 0) return;
   let index = 0;
   let ship;
   while (index < ships.length) {
@@ -52,28 +52,28 @@ function handlePlacement(ships, e) {
 
     PlayerOneMsg.textContent = `Place your ships! 
     press (space) to change orientation`;
-    if (e.code === 'Space') {
-      ship.orientation = ship.orientation === 'v' ? 'h' : 'v';
+    if (e.code === "Space") {
+      ship.orientation = ship.orientation === "v" ? "h" : "v";
       updateBoard();
     }
 
-    if (!e.target.classList.contains('cell')) return;
+    if (!e.target.classList.contains("cell")) return;
 
     let x = e.target.dataset.x;
     let y = e.target.dataset.y;
     let el;
-    const color = e.type === 'mouseout' ? '#fff' : 'red';
+    const color = e.type === "mouseout" ? "#fff" : "red";
 
     let i = 0;
     while (i < ship.len) {
-      if (ship.orientation === 'h') {
+      if (ship.orientation === "h") {
         el = document.querySelector(
           `.player1 .board [data-x='${x}'][data-y='${y++}']`
         );
         if (!el) return;
       }
 
-      if (ship.orientation === 'v') {
+      if (ship.orientation === "v") {
         el = document.querySelector(
           `.player1 .board [data-x='${x++}'][data-y='${y}']`
         );
@@ -81,13 +81,13 @@ function handlePlacement(ships, e) {
       }
 
       // if (!el) alert('Off Board!!');
-      if (!el) console.log('outside!!');
-      if (el.id === 'ship') return;
+      if (!el) console.log("outside!!");
+      if (el.id === "ship") return;
       el.style.backgroundColor = color;
       i++;
     }
 
-    if (e.type === 'click') {
+    if (e.type === "click") {
       playerOne.board.placeShip(
         ship,
         [e.target.dataset.x, e.target.dataset.y],
@@ -102,10 +102,10 @@ function handlePlacement(ships, e) {
   if (ships.length === 0) PlayerOneMsg.textContent = ``;
 }
 
-PlayerOneBoard.addEventListener('mouseover', handlePlacement.bind(e, pships));
-PlayerOneBoard.addEventListener('mouseout', handlePlacement.bind(e, pships));
-document.addEventListener('keydown', handlePlacement.bind(e, pships));
-document.addEventListener('click', handlePlacement.bind(e, pships));
+PlayerOneBoard.addEventListener("mouseover", handlePlacement.bind(e, pships));
+PlayerOneBoard.addEventListener("mouseout", handlePlacement.bind(e, pships));
+document.addEventListener("keydown", handlePlacement.bind(e, pships));
+document.addEventListener("click", handlePlacement.bind(e, pships));
 
 // Player 2 Ai place ships.
 
@@ -120,23 +120,23 @@ const aships = [
 const randomPlace = function (ship) {
   const board = playerTwo.board.board;
   let [x, y] = playerTwo.genCoords();
-  let orientation = ['v', 'h'][Math.floor(Math.random() * 2)];
+  let orientation = ["v", "h"][Math.floor(Math.random() * 2)];
 
   function isClear(x, y) {
-    if (orientation === 'v') {
+    if (orientation === "v") {
       for (let i = 0; i < ship.len; i++) {
         if (!board[x]) return false;
-        if (board[x][y] !== '') return false;
-        if (typeof board[x][y] === 'object') return false;
+        if (board[x][y] !== "") return false;
+        if (typeof board[x][y] === "object") return false;
         x++;
       }
     }
 
-    if (orientation === 'h') {
+    if (orientation === "h") {
       for (let i = 0; i < ship.len; i++) {
         if (!board[x] && !board[x][y]) return false;
-        if (board[x][y] !== '') return false;
-        if (typeof board[x][y] === 'object') return false;
+        if (board[x][y] !== "") return false;
+        if (typeof board[x][y] === "object") return false;
 
         y++;
       }
@@ -162,32 +162,32 @@ function displayBoards() {
   board.forEach((row, rI) => {
     row.forEach((cell, cI) => {
       let id =
-        typeof cell === 'object'
-          ? 'ship'
-          : cell === 'hit'
-          ? 'hit'
-          : cell === 'miss'
-          ? 'miss'
-          : 'e';
-      const content = cell === 'hit' || cell === 'miss' ? cell : '';
+        typeof cell === "object"
+          ? "ship"
+          : cell === "hit"
+          ? "hit"
+          : cell === "miss"
+          ? "miss"
+          : "e";
+      const content = cell === "hit" || cell === "miss" ? cell : "";
       const html = `  <div class="cell" id="${id}" data-x="${rI}" data-y="${cI}">${
-        typeof cell === 'object' ? '' : content
+        typeof cell === "object" ? "" : content
       }</div>
       `;
 
-      PlayerOneBoard.insertAdjacentHTML('beforeend', html);
+      PlayerOneBoard.insertAdjacentHTML("beforeend", html);
     });
   });
 
   board = playerTwo.board.board;
   board.forEach((row, rI) => {
     row.forEach((cell, cI) => {
-      let id = cell === 'hit' ? 'hit' : cell === 'miss' ? 'miss' : 'e';
-      const content = cell === 'hit' || cell === 'miss' ? cell : '';
+      let id = cell === "hit" ? "hit" : cell === "miss" ? "miss" : "e";
+      const content = cell === "hit" || cell === "miss" ? cell : "";
       const html = `  <div class="cell" id="${id}" data-x="${rI}" data-y="${cI}">${content}</div>
       `;
 
-      PlayerTwoBoard.insertAdjacentHTML('beforeend', html);
+      PlayerTwoBoard.insertAdjacentHTML("beforeend", html);
     });
   });
 
@@ -198,8 +198,8 @@ function displayBoards() {
 }
 
 function updateBoard() {
-  PlayerOneBoard.innerHTML = '';
-  PlayerTwoBoard.innerHTML = '';
+  PlayerOneBoard.innerHTML = "";
+  PlayerTwoBoard.innerHTML = "";
   displayBoards();
 }
 
@@ -208,9 +208,9 @@ updateBoard();
 const IsOver = function () {
   if (playerOne.board.activeShips === 0 || playerTwo.board.activeShips === 0) {
     if (playerOne.board.activeShips > 0)
-      PlayerOneMsg.textContent = 'Congrats you win';
+      PlayerOneMsg.textContent = "Congrats you win";
     if (playerTwo.board.activeShips > 0)
-      PlayerTwoMsg.textContent = 'Congrats you win';
+      PlayerTwoMsg.textContent = "Congrats you win";
     return true;
   } else {
     return false;
@@ -218,10 +218,10 @@ const IsOver = function () {
 };
 
 // PLayer moves.
-PlayerTwoBoard.addEventListener('click', (e) => {
+PlayerTwoBoard.addEventListener("click", (e) => {
   if (IsOver()) return;
   if (currentPlayer === playerTwo) return;
-  if (e.target.textContent !== '') return;
+  if (e.target.textContent !== "") return;
   const [x, y] = [e.target.dataset.x, e.target.dataset.y];
   const board = playerTwo.board;
   board.receiveAttack([x, y]);

@@ -6,13 +6,11 @@ body {
   display: flex;
   flex-direction: column;
   /* border: 1px solid green; */
-  height: 100vh;
 }
 
 .main {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 100%;
 }
 
 .main .player1,
