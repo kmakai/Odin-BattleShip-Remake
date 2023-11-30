@@ -206,8 +206,10 @@ updateBoard();
 // check if game is over
 const IsOver = function () {
   if (playerOne.board.activeShips === 0 || playerTwo.board.activeShips === 0) {
-    if (playerOne.board.activeShips > 0)
+    if (playerOne.board.activeShips > 0) {
       PlayerOneMsg.textContent = "Congrats you win";
+      resetBtn.style.display = "block";
+    }
     if (playerTwo.board.activeShips > 0)
       PlayerTwoMsg.textContent = "Congrats you win";
     return true;

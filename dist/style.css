@@ -34,7 +34,7 @@ body {
   color: white;
   font-size: 1.6rem;
   cursor: pointer;
-  /* display: none; */
+  display: none;
 }
 
 .player1,
@@ -103,7 +103,7 @@ h2 {
   border: 1px solid rgba(24, 124, 224, 0.671);
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   .main {
     grid-template-columns: 1fr;
   }
