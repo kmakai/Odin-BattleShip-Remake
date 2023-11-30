@@ -25,6 +25,18 @@ body {
   border-right: 1.5px solid #e2e8f0;
 }
 
+.reset-button button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #f87171;
+  color: white;
+  font-size: 1.6rem;
+  cursor: pointer;
+  /* display: none; */
+}
+
 .player1,
 .player2 {
   border-bottom: 1.5px solid #e2e8f0;
@@ -36,6 +48,8 @@ h1 {
   margin: 0.5rem 1rem;
   letter-spacing: 0.2rem;
   color: #475569;
+  display: flex;
+  gap: 1rem;
 }
 
 h2 {
@@ -92,9 +106,5 @@ h2 {
 @media screen and (max-width: 500px) {
   .main {
     grid-template-columns: 1fr;
-  }
-
-  .player1 {
-    width: 80%;
   }
 }

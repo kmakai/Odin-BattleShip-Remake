@@ -14,7 +14,6 @@ const PlayerTwoMsg = document.querySelector(".player2 .msg");
 const PlayerTwoBoard = document.querySelector(".player2 .board");
 const PlayerTwoships = document.querySelector(".player2 .ships");
 
-// Global Variables.
 let currentPlayer;
 
 // Create Player and Ai.
@@ -238,3 +237,10 @@ const botMove = function () {
   updateBoard();
   currentPlayer = playerOne;
 };
+
+function reset() {
+  window.location.reload();
+}
+const resetBtn = document.querySelector(".rset");
+
+resetBtn.addEventListener("click", reset);
