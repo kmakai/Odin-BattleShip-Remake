@@ -1,45 +1,45 @@
-const Ship = require('./ship.js');
+const Ship = require("./ship.js");
 
 class Gameboard {
   constructor() {
     this.ships = [];
     this.activeShips = this.calcShips;
     this.board = [
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', '', '', ''],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
     ];
   }
 
   receiveAttack(coords) {
     const [x, y] = coords;
-    if (typeof this.board[x][y] === 'object') {
+    if (typeof this.board[x][y] === "object") {
       this.board[x][y].hit();
-      this.board[x][y] = 'hit';
+      this.board[x][y] = "hit";
       this.calcShips();
-    } else if (this.board[x][y] === '') {
-      this.board[x][y] = 'miss';
+    } else if (this.board[x][y] === "") {
+      this.board[x][y] = "miss";
     }
   }
 
-  placeShip(ship, cords, direction) {
-    let [x, y] = cords;
+  placeShip(ship, coords, direction) {
+    let [x, y] = coords;
     switch (direction) {
-      case 'h':
-        for (let i = 0; i < ship['len']; i++) {
+      case "h":
+        for (let i = 0; i < ship["len"]; i++) {
           this.board[x][y] = ship;
           y++;
         }
         break;
-      case 'v':
-        for (let i = 0; i < ship['len']; i++) {
+      case "v":
+        for (let i = 0; i < ship["len"]; i++) {
           this.board[x][y] = ship;
           x++;
         }

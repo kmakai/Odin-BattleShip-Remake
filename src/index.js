@@ -30,7 +30,7 @@ playerTwo.board = new GameBoard();
 
 displayBoards();
 
-// Player 1 place shisps.
+// Player 1 place ships.
 const pships = [
   new Ship(5),
   new Ship(4),
@@ -228,16 +228,13 @@ PlayerTwoBoard.addEventListener("click", (e) => {
   updateBoard();
   currentPlayer = playerTwo;
   setTimeout(() => botMove(), 0);
-  console.log(board);
 });
 
 // Ai Shot/
 const botMove = function () {
   if (IsOver()) return;
   const board = playerOne.board;
-  // console.log(board);
   playerTwo.takeShot(board);
   updateBoard();
   currentPlayer = playerOne;
-  console.log(board);
 };

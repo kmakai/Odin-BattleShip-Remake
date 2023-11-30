@@ -5,7 +5,6 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  /* border: 1px solid green; */
 }
 
 .main {
@@ -24,6 +23,12 @@ body {
 
 .main .player1 {
   border-right: 1.5px solid #e2e8f0;
+}
+
+.player1,
+.player2 {
+  border-bottom: 1.5px solid #e2e8f0;
+  padding-bottom: 5px;
 }
 
 h1 {
@@ -82,4 +87,14 @@ h2 {
 
 #miss {
   border: 1px solid rgba(24, 124, 224, 0.671);
+}
+
+@media screen and (max-width: 500px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+
+  .player1 {
+    width: 80%;
+  }
 }
