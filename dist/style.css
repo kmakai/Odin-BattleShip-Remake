@@ -68,11 +68,11 @@ h2 {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
-  border: 1px solid lightblue;
+  border: 1px solid rgb(22, 94, 118);
 }
 
 .cell {
-  border: 1px dotted lightblue;
+  border: 1px dotted rgb(103, 170, 193);
   height: 40px;
   width: 40px;
 
